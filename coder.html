@@ -1,0 +1,19 @@
+<head>
+<title>Code Reader/Writer</title>
+</head>
+
+<!--script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script-->
+
+<body>
+<input type="file" id="fileselect"/>
+<script>
+var fr = new FileReader()
+function boop(e) {
+	var files = e.target.files
+	var f = files[0]
+	var result = fr.readAsText(f)
+	document.write(result)
+}
+document.getElementById('fileselect').addEventListener('change', boop, false)
+</script>
+</body>
