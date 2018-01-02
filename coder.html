@@ -1,22 +1,24 @@
-<head>
-<title>Code Reader/Writer</title>
-</head>
+<HEAD>
+<TITLE>Code Reader/Writer</TITLE>
+</HEAD>
 
 <!--script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script-->
 
-<body>
-<input type="file" id="fileselect"/>
-<script>
+<BODY>
+<INPUT type="file" id="fileselect"/>
+<P id="text-display">Here is where the result goes.</P>
+<SCRIPT>
 window.onload = function() {
+	var output = document.getElementById('text-display')
 	var fileInput = document.getElementById('fileselect')
 	fileInput.addEventListener('change', function() {
 		var f = fileInput.files[0]
 		var fr = new FileReader()
 		// To keep it async, feed the reader this function to run
 		// when it's done loading the file.
-		fr.onload = function() { console.log(fr.result) }
+		fr.onload = function() { output.innerText = fr.result }
 		fr.readAsText(f)
 	})
 }
-</script>
-</body>
+</SCRIPT>
+</BODY>
