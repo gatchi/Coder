@@ -19,13 +19,15 @@ window.onload = function() {
 		reader.onload = function() {
 			// This is where the parser gets called
 			var text = reader.result
-			code = parse(text)
+			code = findCode(text)
 			output.innerText = code
+			var _class = new Object()
+			_class.name = findClassName(code)
 		}
 		reader.readAsText(file)
 	})
 }
-function parse(text) {
+function findCode(text) {
 	// There should be a class in here, find it
 	var i = text.indexOf('private')
 	var j = text.indexOf('public')
@@ -34,6 +36,12 @@ function parse(text) {
 	i = compare(i,j)
 	var code = text.slice(i)
 	return code
+}
+function findClassName(code) {
+	var i = code.indexOf("class")
+	var j = code.indexOf("{")
+	var s = code.slice(i+6,j-1)
+	return s
 }
 function compare(i, j) {
 	if (i = -1) {
