@@ -12,6 +12,8 @@ window.onload = function() {
 	fileInput.addEventListener('change', function() {
 		var f = fileInput.files[0]
 		var fr = new FileReader()
+		// To keep it async, feed the reader this function to run
+		// when it's done loading the file.
 		fr.onload = function() { console.log(fr.result) }
 		fr.readAsText(f)
 	})
