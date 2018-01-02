@@ -5,19 +5,19 @@
 <!--script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script-->
 
 <BODY>
-<INPUT type="file" id="fileselect"/>
+<INPUT type="file" id="file-select"/>
 <P id="text-display">Here is where the result goes.</P>
 <SCRIPT>
 window.onload = function() {
 	var output = document.getElementById('text-display')
-	var fileInput = document.getElementById('fileselect')
+	var fileInput = document.getElementById('file-select')
 	fileInput.addEventListener('change', function() {
-		var f = fileInput.files[0]
-		var fr = new FileReader()
+		var file = fileInput.files[0]
+		var reader = new FileReader()
 		// To keep it async, feed the reader this function to run
 		// when it's done loading the file.
-		fr.onload = function() { output.innerText = fr.result }
-		fr.readAsText(f)
+		reader.onload = function() { output.innerText = reader.result }
+		reader.readAsText(file)
 	})
 }
 </SCRIPT>
