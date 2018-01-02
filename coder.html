@@ -7,13 +7,14 @@
 <body>
 <input type="file" id="fileselect"/>
 <script>
-var fr = new FileReader()
-function boop(e) {
-	var files = e.target.files
-	var f = files[0]
-	var result = fr.readAsText(f)
-	document.write(result)
+window.onload = function() {
+	var fileInput = document.getElementById('fileselect')
+	fileInput.addEventListener('change', function() {
+		var f = fileInput.files[0]
+		var fr = new FileReader()
+		fr.onload = function() { console.log(fr.result) }
+		fr.readAsText(f)
+	})
 }
-document.getElementById('fileselect').addEventListener('change', boop, false)
 </script>
 </body>
