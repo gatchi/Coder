@@ -16,9 +16,32 @@ window.onload = function() {
 		var reader = new FileReader()
 		// To keep it async, feed the reader this function to run
 		// when it's done loading the file.
-		reader.onload = function() { output.innerText = reader.result }
+		reader.onload = function() {
+			// This is where the parser gets called
+			var text = reader.result
+			code = parse(text)
+			output.innerText = code
+		}
 		reader.readAsText(file)
 	})
+}
+function parse(text) {
+	// There should be a class in here, find it
+	var i = text.indexOf('private')
+	var j = text.indexOf('public')
+	i = compare(i,j)
+	j = text.indexOf('class')
+	i = compare(i,j)
+	var code = text.slice(i)
+	return code
+}
+function compare(i, j) {
+	if (i = -1) {
+		if (j != -1) { i = j }
+	} else {
+		if (j < i) { i = j }
+	}
+	return i
 }
 </SCRIPT>
 </BODY>
