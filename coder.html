@@ -1,12 +1,17 @@
 <HEAD>
 <TITLE>Code Reader/Writer</TITLE>
+<LINK rel="stylesheet" type="text/css" href="http://www.openjs.com/scripts/ui/context_menu/context_menu.css">
 </HEAD>
 
 <!--script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script-->
+<SCRIPT src="http://www.openjs.com/scripts/ui/context_menu/context_menu.js"></SCRIPT>
 
 <BODY>
 <INPUT type="file" id="file-select"/>
 <P id="text-display">Here is where the result goes.</P>
+<UL class="context-menu" id="menu-list">
+<LI>rename</LI>
+</UL>
 <SCRIPT>
 window.onload = function() {
 	var output = document.getElementById('text-display')
@@ -23,10 +28,12 @@ window.onload = function() {
 			output.innerText = code
 			var _class = new Object()
 			_class.name = findClassName(code)
+			output.innerText = _class.name
 		}
 		reader.readAsText(file)
 	})
 }
+ContextMenu.set("menu-list", "text-display")
 function findCode(text) {
 	// There should be a class in here, find it
 	var i = text.indexOf('private')
